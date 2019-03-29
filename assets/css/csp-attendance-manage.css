@@ -1,0 +1,14 @@
+.flatpickr-time input {
+    margin-top: 0!important;
+}
+
+#attendance-container {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+}
+
+#attendance-list, #attendance-form {
+    flex-grow: 1;
+
+}

@@ -1,0 +1,66 @@
+{
+    "name": "wpbp\/wordpress-plugin-boilerplate-powered",
+    "description": "Wordpress Plugin Boilerplate with steroids!",
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "Tim Lamoureux",
+            "email": "tim@wcubemedia.com",
+            "homepage": "http:\/\/wcubemedia.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.6",
+        "composer\/installers": "1.x",
+        "wpbp\/cronplus": "1.0.*",
+        "wpbp\/widgets-helper": "1.0.*",
+        "wpbp\/template": "1.0.*",
+        "wpbp\/debug": "1.1.*",
+        "wpbp\/cpt_columns": "1.0.*",
+        "wpbp\/language": "1.0.*",
+        "nathanielks\/wp-admin-notice": "dev-master",
+        "julien731\/wp-dismissible-notices-handler": "1.*",
+        "johnbillion\/extended-cpts": "4.2.*",
+        "freemius\/wordpress-sdk": "2.2.*",
+        "cmb2\/cmb2": "2.6.*",
+        "origgami\/cmb2-grid": "dev-master",
+        "stevegrunwell\/wp-cache-remember": "dev-master"
+    },
+    "repositories": [
+        {
+            "url": "git@github.com:nathanielks\/wordpress-admin-notice.git",
+            "type": "git"
+        }
+    ],
+    "require-dev": {
+        "lucatume\/wp-browser": "2.*",
+        "lucatume\/function-mocker": "~1.0",
+        "phpro\/grumphp": "^0.15",
+        "codeception\/codeception": "2.5.*",
+        "codeception\/codeception-progress-reporter": "dev-master",
+        "phpunit\/phpunit": "6.*"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "autoload": {
+        "classmap": [
+            "engine\/",
+            "admin\/",
+            "ajax\/",
+            "public\/",
+            "internals\/",
+            "integrations\/",
+            "rest\/"
+        ]
+    },
+    "extra": {
+        "installer-paths": {
+            "vendor\/{$name}\/": [
+                "cmb2\/cmb2",
+                "origgami\/cmb2-grid",
+                "stevegrunwell\/wp-cache-remember"
+            ]
+        }
+    },
+    "homepage": "https:\/\/github.com\/WPBP\/WordPress-Plugin-Boilerplate-Powered"
+}
