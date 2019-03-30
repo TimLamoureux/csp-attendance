@@ -11,7 +11,7 @@ else
 fi
 output='/tmp'
 if [ -z "$1" ]; then
-    pluginfolder=$(pwd)
+    pluginfolder=$(pwd -L)
 fi
 
 originalfoldername=$(basename "$pluginfolder")
@@ -77,13 +77,15 @@ rm -rf ./*.zip
 #This contain the test stuff
 rm -rf ./vendor
 rm -rf ./tests
+rm -rf ./freemius-packager.sh
 
 if [ -s './composer.json' ]; then
     #Detect if there are composer dependencies
-    dep=$(cat "./composer.json" | jq 'has(".require")')
+    dep=$(cat "./composer.json" | jq 'has("require")')
     if [ "$dep" == 'true' ]; then
         echo "-Downloading clean composer dependencies..."
-        composer update --no-dev &> /dev/null
+        #composer update --no-dev &> /dev/null
+        composer update --no-dev
     else
         rm -rf ./composer.json
     fi
@@ -102,9 +104,11 @@ if [ -s './includes/Fake_Freemius.php' ]; then
     sed -i "$rowfs/\\/\\///" "$fileroot"
 fi
 
-zip -r "$output"/"$packagename"-"$version".zip ./ &> /dev/null
+destination=$pluginfolder
+echo "Generating package in $destination"
+zip -r "$destination"/"$packagename"-"$version".zip ./ &> /dev/null
 
-#slack-message "Package generated for $packagename at $version done!"
+echo "Package generated for $packagename at $version done!"
 rm -rf /tmp/"$foldername"
 
 echo "-Package generated!"
