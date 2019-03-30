@@ -28,12 +28,13 @@ class Ca_Admin_Notices extends Ca_Admin_Base {
 		 *
 		 * First parameter the HTML, the second is the css class
 		 */
-		new WP_Admin_Notice( __( 'Updated Messages', CA_TEXTDOMAIN ), 'updated' );
-		new WP_Admin_Notice( __( 'Error Messages', CA_TEXTDOMAIN ), 'error' );
+		//new WP_Admin_Notice( __( 'Updated Messages', CA_TEXTDOMAIN ), 'updated' );
+		//new WP_Admin_Notice( __( 'Error Messages', CA_TEXTDOMAIN ), 'error' );
+
 		/*
 		 * Dismissible notice
 		 */
-		dnh_register_notice( 'my_demo_notice', 'updated', __( 'This is my dismissible notice', CA_TEXTDOMAIN ) );
+		//dnh_register_notice( 'my_demo_notice', 'updated', __( 'This is my dismissible notice', CA_TEXTDOMAIN ) );
 	}
 
 }
