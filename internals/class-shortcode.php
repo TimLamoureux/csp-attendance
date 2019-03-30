@@ -20,11 +20,12 @@ class Ca_Shortcode extends Ca_Base {
 	 */
 	public function initialize() {
 		parent::initialize();
-        add_shortcode( 'foobar', array( $this, 'foobar_func' ) );
+        //add_shortcode( 'foobar', array( $this, 'foobar_func' ) );
+		add_shortcode( 'ca_manager', array( $this, 'attendance_manager' ) );
 	}
 
 	/**
-	 * Shortcode example
+	 * Shortcode to output the attendance manager
 	 *
 	 * @param array $atts Parameters.
 	 *
@@ -32,16 +33,33 @@ class Ca_Shortcode extends Ca_Base {
 	 *
 	 * @return string
 	 */
-	public static function foobar_func( $atts ) {
-		shortcode_atts(
+	public static function attendance_manager( $atts ) {
+		/*shortcode_atts(
 			array(
 				'foo' => 'something',
 				'bar' => 'something else',
 			), $atts
-		);
+		);*/
 
-		return '<span class="foo">foo = ' . $atts[ 'foo' ] . '</span>' .
-			'<span class="bar">foo = ' . $atts[ 'bar' ] . '</span>';
+		// TODO: Use filters and actions to output the template parts. None of this should be in the shortcode code directly
+
+		ob_start();
+		?>
+
+		<div>
+			<h3>Attendance manager</h3>
+			<?php
+			if ( function_exists( 'wpbp_get_template_part') ) {
+				wpbp_get_template_part( CA_TEXTDOMAIN, 'content', 'attendance-manager', true );
+			}
+			else {
+				get_template_part( 'content', 'attendance-manager' );
+			}
+			?>
+		</div>
+
+		<?php
+		return ob_get_clean();
 	}
 
 }
