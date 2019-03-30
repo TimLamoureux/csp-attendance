@@ -46,6 +46,8 @@ class Ca_Initialize {
         $this->classes[] = 'Ca_Transient';
 		$this->classes[] = 'Ca_Ajax'; // Todo, load only for the frontend and when requiring ajax
 		$this->classes[] = 'Ca_Attendance';
+		$this->classes[] = 'Ca_Shortcode';
+
 
 
 
