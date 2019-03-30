@@ -10,7 +10,7 @@
  *
  * Plugin Name:	    CSP Attendance
  * Plugin URI:		@TODO
- * Description:	    @TODO
+ * Description:	    This plugin allows to manage patrollers' attendance to various CSP events
  * Version:		    1.0.0
  * Author:			Tim Lamoureux
  * Author URI:		https://wcubemedia.com
