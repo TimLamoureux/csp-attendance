@@ -1,4 +1,8 @@
 #!/bin/bash
+
+# TODO: Have plugin bundled in folder representing the name of the project to
+# prevent multiple simultaneous versions of the plugin on the server.
+
 # First parameter not mandatory is the folder of the plugin, if not set use the current working directory
 # Second parameter not mandatory is the root file of the plugin, if not set use the foldername of the plugin (not require the extension of the file)
 
