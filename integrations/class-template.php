@@ -70,4 +70,8 @@ class Ca_Template extends Ca_Base {
 
 		return $original_template;
 	}
+
+	public static function locate_partial() {
+
+	}
 }
