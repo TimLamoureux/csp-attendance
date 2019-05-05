@@ -46,8 +46,11 @@ class Ca_Initialize {
         $this->classes[] = 'Ca_Transient';
 		$this->classes[] = 'Ca_Ajax'; // Todo, load only for the frontend and when requiring ajax
 		$this->classes[] = 'Ca_Attendance';
+		$this->classes[] = 'Ca_Enqueue';
 		$this->classes[] = 'Ca_Shortcode';
 
+
+		$this->classes[] = 'Ca_Report';
 
 
 
@@ -89,7 +92,7 @@ class Ca_Initialize {
             } catch ( Exception $err ) {
                 do_action( 'csp_attendance_initialize_failed', $err );
                 if ( WP_DEBUG ) {
-                    throw new Exception(getMessage());
+                    throw new Exception($err->getMessage());
                 }
             }
         }

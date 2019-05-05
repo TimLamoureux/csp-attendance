@@ -1,2 +1,58 @@
 /* This stylesheet is used to style the public-facing components of the plugin. */
 
+.ca-report-user {
+  display: inline-block;
+  border: solid 1px red;
+  border-radius: 5px;
+  width: 43%;
+  padding: 1em;
+  margin: 1em;
+}
+
+div[aria-label*="tabular representation"] {
+  /*position: absolute!important;
+  top: 0!important;
+  left: 0!important;
+  width: auto!important;
+  height: auto!important;*/
+}
+
+.ca-chart-container {
+  width: 400px;
+  height: 200px;
+  float: left;
+}
+
+.ca-dow-container {
+  width: 200px;
+  height: 200px;
+  float:left;
+}
+
+.ca-report-user-events {
+  clear: both;
+  width: 100%;
+}
+
+.ca-report-user-events-table {
+  display: none;
+}
+
+/* Row number in Google Chart Table*/
+.google-visualization-table-seq {
+  width: 30px;
+}
+
+.event-table-cell {
+  border-right: 1px solid #ddd;
+}
+
+.event-table-cell-xsmall {
+  text-align: center;
+  width: 30px;
+}
+
+.event-table-cell-small {
+  /*text-align: center;*/
+  width: 10%;
+}
