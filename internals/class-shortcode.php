@@ -20,8 +20,9 @@ class Ca_Shortcode extends Ca_Base {
 	 */
 	public function initialize() {
 		parent::initialize();
-        //add_shortcode( 'foobar', array( $this, 'foobar_func' ) );
+		//add_shortcode( 'foobar', array( $this, 'foobar_func' ) );
 		add_shortcode( 'ca_manager', array( $this, 'attendance_manager' ) );
+		add_shortcode( 'ca_report_form', array( $this, 'generate_report_form' ) );
 	}
 
 	/**
@@ -46,20 +47,57 @@ class Ca_Shortcode extends Ca_Base {
 		ob_start();
 		?>
 
-		<div>
-			<h3>Attendance manager</h3>
+        <div>
+            <h3>Attendance manager</h3>
 			<?php
-			if ( function_exists( 'wpbp_get_template_part') ) {
+			/**
+			 * TODO: should locate file instead of use template part. The reason is because if the part is not foud,
+			 * It will default to Content Template instead.
+			 */
+			if ( function_exists( 'wpbp_get_template_part' ) ) {
 				wpbp_get_template_part( CA_TEXTDOMAIN, 'content', 'attendance-manager', true );
-			}
-			else {
+			} else {
 				get_template_part( 'content', 'attendance-manager' );
 			}
 			?>
-		</div>
+        </div>
 
 		<?php
 		return ob_get_clean();
 	}
 
+	/**
+	 * Shortcode to output a user's attendance
+	 *
+	 * @param array $atts Parameters.
+	 *
+	 * @since 1.0.1
+	 *
+	 * @return string
+	 */
+	public static function my_attendance( $atts ) {
+		shortcode_atts(
+			array(
+				'user_id' => get_current_user_id(),
+				'from' => mktime(
+					0,
+					0,
+					0,
+					date( 'm' ) - 1,
+                    date( 'd' ),
+					date( 'Y' )
+				),
+				'to' => mktime()
+			), $atts
+		);
+	}
+
+	function generate_report_form( $atts ) {
+
+		ob_start();
+		//load_template( wpbp_get_template_part( CA_TEXTDOMAIN, 'report', 'form', false ) );
+		wpbp_get_template_part( CA_TEXTDOMAIN, 'partial', 'report-form', true );
+
+		return ob_get_clean();
+	}
 }

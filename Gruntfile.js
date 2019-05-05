@@ -24,6 +24,12 @@ module.exports = function (grunt) {
         }
       }
     },
+    watch: {
+      src: {
+        files: ['assets/sass/*.scss'],
+          tasks: ['compass']
+      }
+    },
     coffee: {
       js: {
         options: {

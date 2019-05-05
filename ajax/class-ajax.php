@@ -38,6 +38,7 @@ class Ca_Ajax extends Ca_Base {
 			add_action('wp_ajax_attendance_form_process', array( $this, 'attendance_form_process' ));
 			add_action('wp_ajax_attendance_retrieve', array( $this, 'attendance_retrieve' ));
 			add_action('wp_ajax_attendance_delete', array( $this, 'attendance_delete' ));
+			add_action('wp_ajax_generate_attendance_report', array( $this, 'generate_attendance_report' ) );
 		}
 
 	}
@@ -220,6 +221,56 @@ class Ca_Ajax extends Ca_Base {
 		else {
 			wp_send_json_error("Attendance could not be deleted.", 400);
 		}
+	}
+
+	/**
+	 * Generate a report of the patrollers attendance
+	 *
+	 * @return JSON data of patrollers attendance
+	 */
+	public function generate_attendance_report() {
+
+		if ( ! wp_verify_nonce( $_POST['attendance-form-nonce'], 'generate_attendance_report' ) ) {
+			die( 'Security check' );
+		}
+
+		/*
+		 * TODO: Sanitize post params
+		 foreach ( $_POST as $arg ) {
+
+		}
+		*/
+
+		try {
+			$report = new Ca_Report(
+				array(
+					'event_id' => $_POST['event_id'],
+					'group_id' => $_POST['group_id'],
+					'category' => $_POST['category'],
+					'type' => $_POST['type'],
+					'user_id' => $_POST['user_id'],
+					'bookings' => $_POST['bookings'],
+					'compare_event_length' => $_POST['compare_event_length'],
+					'time_after_start' => $_POST['time_after_start'],
+					'time_before_end' => $_POST['time_before_end']
+				),
+//				new DateTime( $_POST['date-start'][0] ),
+				DateTime::createFromFormat('D M d Y H:i:s e+', $_POST['date-start'][0]),
+//				new DateTime( $_POST['date-end'][0] )
+				DateTime::createFromFormat('D M d Y H:i:s e+', $_POST['date-end'][0])
+			);
+		}
+		catch (Exception $e) {
+			$stop = true;
+			wp_send_json_error($e);
+		}
+
+
+		$report->generate_report();
+
+		$out = strval($report);
+		wp_send_json_success( $out );
+		// wp_send_json_error( $return );
 	}
 }
 

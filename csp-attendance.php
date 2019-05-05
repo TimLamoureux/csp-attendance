@@ -33,6 +33,10 @@ define( 'CA_PLUGIN_ROOT', plugin_dir_path( __FILE__ ) );
 define( 'CA_PLUGIN_ABSOLUTE', __FILE__ );
 define( 'CA_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 
+define( 'CA_ATTENDANCE_CPT', 'wcm-attendance' );
+define( 'CA_TIMEZONE', 'America/Whitehorse' ); // TODO: Make this an option and move in the init section
+define( 'CA_REPORT_PAGE', 'Reports' ); // TODO: Am I still used?
+
 /**
  * Load the textdomain of the plugin
  *

@@ -6,6 +6,7 @@
     <form action="" id="attendance-form" method="POST" autocomplete="off">
         <fieldset>
             <label for="event"><?php _e( 'Event:', CA_TEXTDOMAIN ) ?></label>
+            <?php /* TODO: Add ability to edit event from the attendance form. Will be helpful to change end times. */ ?>
             <select name="event" id="event" class="required">
                 <option><?php _e('Please select an event', CA_TEXTDOMAIN); ?></option>
 				<?php foreach ( Ca_Attendance::get_events() as $event ): ?>
